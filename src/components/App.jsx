@@ -15,9 +15,31 @@ export default class App extends Component {
   };
 
   handleFilter = e => {
-    this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(e.target.value.toLowerCase())
-    );
+    this.setState({
+      filter: e.target.value,
+    });
+
+    // this.state.contacts.filter(
+    //   contact =>
+    //     contact.name.toLowerCase().includes(e.target.value.toLowerCase()) &&
+    //     this.setState((prevState) => {
+    //       prevState.contacts: [contact, ...contacts];
+    //     })
+    // );
+  };
+
+  onFilterContacts = () => {
+    let filteredContacts = [];
+    if (this.state.filter) {
+      filteredContacts = this.state.contacts.filter(
+        contact =>
+          contact.name.includes(this.state.filter) ||
+          contact.name.toLowerCase().includes(this.state.filter)
+      );
+    } else {
+      return this.state.contacts;
+    }
+    return filteredContacts;
   };
 
   formSubmitHandler = data => {
@@ -50,10 +72,15 @@ export default class App extends Component {
         />
         <label>
           Find contacts by name
-          <input type="text" name="filter" onChange={this.handleFilter} />
+          <input
+            type="text"
+            name="filter"
+            onChange={this.handleFilter}
+            value={this.state.filter}
+          />
         </label>
 
-        <Contacts title="Contacts" contacts={this.state.contacts} />
+        <Contacts title="Contacts" filteredContacts={this.onFilterContacts()} />
       </div>
     );
   }
