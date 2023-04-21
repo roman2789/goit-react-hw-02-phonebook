@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-class Form extends Component {
+class ContactForm extends Component {
   state = {
     name: '',
     number: '',
@@ -19,7 +19,16 @@ class Form extends Component {
     const name = this.state.name;
     const id = nanoid();
     const number = this.state.number;
+    if (
+      this.props.contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
     this.props.onContactsAdd({ id, name, number });
+
     this.props.onSubmit(this.state);
     this.reset();
   };
@@ -61,4 +70,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default ContactForm;

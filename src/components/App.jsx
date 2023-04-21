@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import { Contacts } from './Contacts/Contacts';
+import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
-import Form from './Form/Form';
+import ContactForm from './ContactForm/ContactForm';
 
 export default class App extends Component {
   state = {
@@ -18,23 +19,13 @@ export default class App extends Component {
     this.setState({
       filter: e.target.value,
     });
-
-    // this.state.contacts.filter(
-    //   contact =>
-    //     contact.name.toLowerCase().includes(e.target.value.toLowerCase()) &&
-    //     this.setState((prevState) => {
-    //       prevState.contacts: [contact, ...contacts];
-    //     })
-    // );
   };
 
   onFilterContacts = () => {
     let filteredContacts = [];
     if (this.state.filter) {
-      filteredContacts = this.state.contacts.filter(
-        contact =>
-          contact.name.includes(this.state.filter) ||
-          contact.name.toLowerCase().includes(this.state.filter)
+      filteredContacts = this.state.contacts.filter(contact =>
+        contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
       );
     } else {
       return this.state.contacts;
@@ -66,21 +57,17 @@ export default class App extends Component {
           color: '#010101',
         }}
       >
-        <Form
+        <ContactForm
           onSubmit={this.formSubmitHandler}
           onContactsAdd={this.addContact}
+          contacts={this.state.contacts}
         />
-        <label>
-          Find contacts by name
-          <input
-            type="text"
-            name="filter"
-            onChange={this.handleFilter}
-            value={this.state.filter}
-          />
-        </label>
+        <Filter filter={this.state.filter} onFilter={this.handleFilter} />
 
-        <Contacts title="Contacts" filteredContacts={this.onFilterContacts()} />
+        <ContactList
+          title="Contacts"
+          filteredContacts={this.onFilterContacts()}
+        />
       </div>
     );
   }
