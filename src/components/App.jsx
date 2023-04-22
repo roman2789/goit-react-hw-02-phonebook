@@ -35,7 +35,14 @@ export default class App extends Component {
 
   addContact = ({ name, id, number }) => {
     const contact = { id, name, number };
+    const nameComparison = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
     this.setState(({ contacts }) => {
+      if (nameComparison) {
+        alert(`${name} is already in contacts`);
+        return;
+      }
       return { contacts: [contact, ...contacts] };
     });
   };
@@ -53,10 +60,7 @@ export default class App extends Component {
     return (
       <Container>
         <TitlePhoneBook>Phonebook</TitlePhoneBook>
-        <ContactForm
-          onSubmit={this.addContact}
-          contacts={this.state.contacts}
-        />
+        <ContactForm onSubmit={this.addContact} />
         <TitleContacts>Contacts</TitleContacts>
         <Filter filter={this.state.filter} onFilter={this.handleFilter} />
 
