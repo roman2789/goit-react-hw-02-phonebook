@@ -7,10 +7,9 @@ export const MainForm = styled.form`
   justify-content: space-between;
   height: 240px;
   padding: 20px;
+  border: none;
   border-radius: 5px;
-  background-color: ${props => props.theme.colors.greyBg};
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.22), 0px 2px 2px rgba(0, 0, 0, 0.24),
-    0px 2px 1px rgba(0, 0, 0, 0.32);
+  background-color: ${props => props.theme.colors.colorBg};
 `;
 
 export const Input = styled.input`
@@ -43,7 +42,7 @@ export const AddButton = styled.button`
   margin: 0 auto;
   padding: 10px 20px;
   ${font({ fs: 16, fw: 600, lh: 20 })};
-  background-color: ${props => props.theme.colors.colorBg};
+  background-color: ${props => props.theme.colors.greyBg};
   color: ${props => props.theme.colors.buttonText};
   box-shadow: -3px -3px 7px ${props => props.theme.colors.white},
     7px 7px 12px ${props => props.theme.colors.colorShadow};

@@ -16,6 +16,7 @@ export const TitlePhoneBook = styled.h1`
   ${widthHeight(240)};
   ${font({ fs: 28, fw: 600, lh: 32 })};
   margin-bottom: 10px;
+
   color: ${props => props.theme.colors.primaryText};
   text-shadow: 1px 1px 1px ${props => props.theme.colors.white};
 `;
