@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-
 import ContactForm from './ContactForm/ContactForm';
+import { Container, TitlePhoneBook, TitleContacts } from './AppStyled';
 
 export default class App extends Component {
   state = {
@@ -51,29 +51,20 @@ export default class App extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
+      <Container>
+        <TitlePhoneBook>Phonebook</TitlePhoneBook>
         <ContactForm
           onSubmit={this.addContact}
           contacts={this.state.contacts}
         />
+        <TitleContacts>Contacts</TitleContacts>
         <Filter filter={this.state.filter} onFilter={this.handleFilter} />
 
         <ContactList
-          title="Contacts"
           filteredContacts={this.onFilterContacts()}
           onClickDeleteContact={this.deleteContactHandle}
         />
-      </div>
+      </Container>
     );
   }
 }

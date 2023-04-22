@@ -1,28 +1,27 @@
 import propTypes from 'prop-types';
+import { List, Item, DelButton } from './ContactListStyled';
 
-const ContactList = ({ title, filteredContacts, onClickDeleteContact }) => {
+const ContactList = ({ filteredContacts, onClickDeleteContact }) => {
   return (
-    <div>
-      <h2>{title}</h2>
+    <List>
       {filteredContacts.map(contact => (
-        <li key={contact.id}>
+        <Item key={contact.id}>
           <span>{contact.name}</span>: <span>{contact.number}</span>
-          <button
+          <DelButton
             type="button"
             onClick={() => onClickDeleteContact(contact.id)}
           >
             Delete
-          </button>
-        </li>
+          </DelButton>
+        </Item>
       ))}
-    </div>
+    </List>
   );
 };
 
 export default ContactList;
 
 ContactList.propTypes = {
-  filteredContacts: propTypes.func.isRequired,
+  filteredContacts: propTypes.arrayOf(propTypes.object).isRequired,
   onClickDeleteContact: propTypes.func.isRequired,
-  title: propTypes.string.isRequired,
 };
