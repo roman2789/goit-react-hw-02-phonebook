@@ -1,3 +1,5 @@
+import propTypes from 'prop-types';
+
 const ContactList = ({ title, filteredContacts, onClickDeleteContact }) => {
   return (
     <div>
@@ -18,3 +20,9 @@ const ContactList = ({ title, filteredContacts, onClickDeleteContact }) => {
 };
 
 export default ContactList;
+
+ContactList.propTypes = {
+  filteredContacts: propTypes.func.isRequired,
+  onClickDeleteContact: propTypes.func.isRequired,
+  title: propTypes.string.isRequired,
+};

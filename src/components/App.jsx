@@ -33,10 +33,6 @@ export default class App extends Component {
     return filteredContacts;
   };
 
-  formSubmitHandler = data => {
-    console.log(data);
-  };
-
   addContact = ({ name, id, number }) => {
     const contact = { id, name, number };
     this.setState(({ contacts }) => {
@@ -67,8 +63,7 @@ export default class App extends Component {
         }}
       >
         <ContactForm
-          onSubmit={this.formSubmitHandler}
-          onContactsAdd={this.addContact}
+          onSubmit={this.addContact}
           contacts={this.state.contacts}
         />
         <Filter filter={this.state.filter} onFilter={this.handleFilter} />

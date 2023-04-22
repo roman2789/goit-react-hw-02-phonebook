@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import propTypes from 'prop-types';
 
 class ContactForm extends Component {
   state = {
@@ -26,9 +27,8 @@ class ContactForm extends Component {
       alert(`${name} is already in contacts`);
       return;
     }
-    this.props.onContactsAdd({ id, name, number });
 
-    this.props.onSubmit(this.state);
+    this.props.onSubmit({ id, name, number });
     this.reset();
   };
 
@@ -70,3 +70,8 @@ class ContactForm extends Component {
 }
 
 export default ContactForm;
+
+ContactForm.propTypes = {
+  onSubmit: propTypes.func.isRequired,
+  contacts: propTypes.arrayOf(propTypes.object).isRequired,
+};
