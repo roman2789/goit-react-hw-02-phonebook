@@ -19,7 +19,7 @@ export const Item = styled.li`
 `;
 
 export const DelButton = styled.button`
-  padding: 4px;
+  padding: 3px;
   border-radius: 6px;
   background-color: ${props => props.theme.colors.colorBg};
   box-shadow: -1px -1px 3px ${props => props.theme.colors.white},
