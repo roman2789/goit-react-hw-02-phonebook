@@ -18,7 +18,7 @@ export const Input = styled.input`
   width: 100%;
   margin-bottom: 10px;
   border-radius: 10px;
-  padding: 5px;
+  padding: 5px 0;
   background-color: ${props => props.theme.colors.buttonBg};
   ${font({ fs: 16, fw: 400, lh: 20 })};
   box-shadow: inset 3px 3px 7px ${props => props.theme.colors.colorShadow},
