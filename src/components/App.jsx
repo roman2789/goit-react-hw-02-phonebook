@@ -23,12 +23,14 @@ export default class App extends Component {
 
   onFilterContacts = () => {
     let filteredContacts = [];
-    if (this.state.filter) {
-      filteredContacts = this.state.contacts.filter(contact =>
-        contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    if (filter) {
+      filteredContacts = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(normalizedFilter)
       );
     } else {
-      return this.state.contacts;
+      return contacts;
     }
     return filteredContacts;
   };

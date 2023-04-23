@@ -1,7 +1,8 @@
+import { Form, Field } from 'formik';
 import styled from 'styled-components';
 import { font } from '../mixins';
 
-export const MainForm = styled.form`
+export const MainForm = styled(Form)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,7 +13,7 @@ export const MainForm = styled.form`
   background-color: ${props => props.theme.colors.colorBg};
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   border: 0;
   outline: 0;
   width: 100%;
